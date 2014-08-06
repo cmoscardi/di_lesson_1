@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# An example hook script to prepare a packed repository for use over
+# dumb transports.
+#
+# To enable this hook, rename this file to "post-update".
+
+echo `pwd`
+echo $'\e[1G-----> Extracting Code...'
+result=$(./process_commit.py)
+echo $'\e[1G-----> Extracted'
+echo $'\e[1G-----> Grading...'
+grade=$(echo "$result" | ./grade.py )
+echo "$grade"
