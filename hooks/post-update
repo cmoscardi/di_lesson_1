@@ -1,14 +1,9 @@
-#!/bin/sh
-#
-# An example hook script to prepare a packed repository for use over
-# dumb transports.
-#
-# To enable this hook, rename this file to "post-update".
+#Pulls the user's code out of the git repository, sends that to the
+#grading server, and reports the results to the user.
 
-echo `pwd`
-echo $'\e[1G-----> Extracting Code...'
+echo $'Extracting Code...'
 result=$(./process_commit.py)
-echo $'\e[1G-----> Extracted'
-echo $'\e[1G-----> Grading...'
+echo $'Extracted'
+echo $'Grading...'
 grade=$(echo "$result" | ./grade.py )
 echo "$grade"
